@@ -7,8 +7,6 @@ import ReactIcon from "~/_components/svg/react";
 import FramermotionIcon from "~/_components/svg/motion";
 import VercelIcon from "~/_components/svg/vercel";
 import FigmaIcon from "~/_components/svg/figma";
-
-import LineThroughAnim from "~/_components/lineThroughAnim";
 import UnderLineLink from "~/_components/underLineLink";
 
 export default function Home() {

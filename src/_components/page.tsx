@@ -2,6 +2,7 @@
 
 import Header from "./header";
 import { motion, type Variants } from "framer-motion";
+import MenuButton from "./menu";
 
 export default function Page({ children }: { children: React.ReactNode }) {
   const animate = (variants: Variants, custom?: Number) => {
@@ -40,7 +41,7 @@ export default function Page({ children }: { children: React.ReactNode }) {
 
   return (
     <div className="relative h-screen">
-      <div className="pointer-events-none fixed top-0 left-0 flex h-screen w-screen">
+      <div className="pointer-events-none fixed top-0 left-0 z-4 flex h-screen w-screen">
         {[...Array(numOfCols)].map((_, i) => (
           <motion.div
             key={i}
@@ -51,6 +52,7 @@ export default function Page({ children }: { children: React.ReactNode }) {
       </div>
       <Header />
       {children}
+      <MenuButton />
     </div>
   );
 }
