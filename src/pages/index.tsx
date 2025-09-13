@@ -1,4 +1,4 @@
-import { motion, type Variants, type MotionProps } from "framer-motion";
+import { motion } from "framer-motion";
 import Head from "next/head";
 import Page from "~/_components/page";
 import TypescriptIcon from "~/_components/svg/typescript";
@@ -8,6 +8,12 @@ import FramermotionIcon from "~/_components/svg/motion";
 import VercelIcon from "~/_components/svg/vercel";
 import FigmaIcon from "~/_components/svg/figma";
 import UnderLineLink from "~/_components/underLineLink";
+import animate from "~/contants/animations/animate";
+import {
+  slideInLink,
+  scrollSlideIn,
+  slideInTitle,
+} from "~/contants/animations/home";
 
 export default function Home() {
   return (
@@ -18,11 +24,11 @@ export default function Home() {
       </Head>
       <Page>
         {/* Title */}
-        <div className="flex h-[80vh] flex-col items-center justify-center px-2">
+        <div className="flex h-[80vh] flex-col items-center justify-center overflow-hidden px-2">
           <div className="flex w-full flex-col justify-end overflow-hidden">
             <motion.h1
               className="text-center text-4xl font-bold uppercase sm:text-5xl md:text-6xl lg:text-7xl xl:text-[7em]/40"
-              {...animate(slideIn)}
+              {...animate(slideInTitle)}
             >
               [ Front-End Dev ]
             </motion.h1>
@@ -47,44 +53,6 @@ export default function Home() {
     </>
   );
 }
-
-const animate = (variants: Variants, custom?: number): MotionProps => {
-  return {
-    initial: "initial",
-    animate: "enter",
-    exit: "exit",
-    variants,
-    custom,
-  };
-};
-
-const slideIn: Variants = {
-  initial: {
-    y: "100%",
-  },
-  enter: {
-    y: 0,
-    transition: {
-      delay: 1,
-      duration: 0.1,
-    },
-  },
-  exit: { y: 0 },
-};
-
-const slideInLink: Variants = {
-  initial: {
-    y: "100%",
-  },
-  enter: (i: number) => ({
-    y: 0,
-    transition: {
-      delay: 0.4 * (i + 3),
-      duration: 0.1,
-    },
-  }),
-  exit: { y: 0 },
-};
 
 const logos = [
   {
@@ -199,7 +167,10 @@ const logos = [
 
 const ScrollItems = () => {
   return (
-    <div className="relative z-0 mx-auto mt-20 h-[100px] w-[90%] max-w-[1536px] overflow-hidden [mask-image:linear-gradient(to_right,rgba(0,0,0,0),rgba(0,0,0,1)_20%,rgba(0,0,0,1)_80%,rgba(0,0,0,0))]">
+    <motion.div
+      {...animate(scrollSlideIn)}
+      className="relative z-0 mx-auto mt-20 h-[100px] w-[90%] max-w-[1536px] overflow-hidden [mask-image:linear-gradient(to_right,rgba(0,0,0,0),rgba(0,0,0,1)_20%,rgba(0,0,0,1)_80%,rgba(0,0,0,0))]"
+    >
       <motion.div
         className="flex"
         style={{ width: "max-content" }}
@@ -228,6 +199,6 @@ const ScrollItems = () => {
           </div>
         ))}
       </motion.div>
-    </div>
+    </motion.div>
   );
 };

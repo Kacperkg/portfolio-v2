@@ -2,7 +2,7 @@ import { motion, type Variants } from "framer-motion";
 import { useState } from "react";
 import LineThroughAnim from "./lineThroughAnim";
 import UnderLineLink from "./underLineLink";
-import animate from "../contants/animate";
+import animate from "../contants/animations/animate";
 
 export default function MenuButton() {
   const [active, setActive] = useState(false);
@@ -52,13 +52,15 @@ export default function MenuButton() {
 const fadeIn: Variants = {
   initial: {
     opacity: 0,
+    scale: 0.5,
   },
   enter: {
     opacity: 1,
+    scale: 1,
     transition: {
       delay: 1,
       duration: 0.25,
     },
   },
-  exit: { opacity: 0 },
+  exit: { opacity: 0, scale: 0 },
 };

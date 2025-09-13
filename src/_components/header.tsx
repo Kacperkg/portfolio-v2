@@ -1,10 +1,16 @@
 "use client";
 
 import LineThroughAnim from "./lineThroughAnim";
+import { motion } from "framer-motion";
+import animate from "~/contants/animations/animate";
+import { slideOutHeader } from "~/contants/animations/header";
 
 export default function Header() {
   return (
-    <header className="border-stone/20 border-b p-4 font-medium">
+    <motion.header
+      className="border-stone/20 border-b p-4 font-medium"
+      {...animate(slideOutHeader)}
+    >
       <div className="mx-auto flex max-w-7xl items-start justify-between">
         <div className="flex w-full cursor-default justify-between gap-1.5 uppercase md:w-fit md:flex-col">
           {["Kacper Gajdarski", "Comp Sci Grad", "At Heriot-Watt"].map(
@@ -41,6 +47,6 @@ export default function Header() {
           ))}
         </div>
       </div>
-    </header>
+    </motion.header>
   );
 }

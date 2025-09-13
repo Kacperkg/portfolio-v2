@@ -9,7 +9,7 @@ const LineSlide: Variants = {
     scaleX: 0,
     originX: 1,
     transition: {
-      delay: 0.4,
+      delay: 0.6,
       duration: 0.15,
       ease: [0.16, 1, 0.3, 1],
     },
