@@ -34,7 +34,10 @@ const Subjectivity = localFont({
 const MyApp: AppType = ({ Component, pageProps, router }: AppProps) => {
   return (
     <div className={Subjectivity.className}>
-      <ReactLenis root options={{ lerp: 0.05 }}>
+      <ReactLenis
+        root
+        options={{ duration: 5, wheelMultiplier: 4, touchMultiplier: 4 }}
+      >
         <AnimatePresence mode="wait">
           <Component {...pageProps} key={router.route} />
         </AnimatePresence>

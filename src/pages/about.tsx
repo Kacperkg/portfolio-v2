@@ -7,6 +7,7 @@ import { slideInTitle } from "~/contants/animations/home";
 import animate from "~/contants/animations/animate";
 
 export default function AboutPage() {
+  const coloredSectionRef = useRef<HTMLDivElement>(null!);
   const cardRef = useRef(null);
   const cardTextRef = useRef(null);
   const { scrollYProgress } = useScroll({
@@ -54,8 +55,8 @@ export default function AboutPage() {
   };
 
   return (
-    <Page>
-      <section className="m-auto flex max-w-7xl flex-col px-2 uppercase md:px-8">
+    <Page observedRef={coloredSectionRef}>
+      <section className="m-auto flex flex-col uppercase">
         {/* hero */}
         <div className="relative flex h-[60vh] flex-col items-center justify-center">
           <div className="flex w-full flex-col justify-end overflow-hidden">
@@ -76,7 +77,7 @@ export default function AboutPage() {
 
         {/* who am i */}
         <div
-          className="mt-100 flex h-[90vh] flex-col-reverse lg:flex-row"
+          className="m-auto mt-100 flex h-[90vh] max-w-7xl flex-col-reverse lg:flex-row"
           ref={cardRef}
         >
           <div className="flex basis-full flex-col justify-center gap-8">
@@ -135,7 +136,60 @@ export default function AboutPage() {
             </motion.div>
           </div>
         </div>
-        <div className="h-screen"></div>
+        <motion.div
+          ref={coloredSectionRef}
+          className="mt-40 h-screen bg-zinc-800 px-8 text-stone-200"
+          initial={{ scale: 0.1 }}
+          whileInView={{ scale: 1 }}
+          transition={{ duration: 0.5 }}
+        >
+          <section className="flex h-screen w-full flex-col justify-center">
+            <div className="flex">
+              <h3 className="flex flex-1 text-5xl font-bold">[ Experience ]</h3>
+              <ul className="flex flex-2 flex-col gap-8 text-xl">
+                {[
+                  {
+                    period: "2021-2025",
+                    title: "Heriot-Watt University",
+                    subtitle:
+                      "bsc computing science (software engineering) 2:1",
+                    location: "edinburgh",
+                  },
+                  {
+                    period: "2024-present",
+                    title: "Samsung Experience Store",
+                    subtitle: "customer experience expert & level 1 engineer",
+                    location: "edinburgh",
+                  },
+                  {
+                    period: "2022-2024",
+                    title: "Virgin Media O2",
+                    subtitle: "sales advisor",
+                    location: "edinburgh, gyle",
+                  },
+                ].map((item, idx, arr) => (
+                  <>
+                    <li key={idx} className="flex w-full flex-col gap-8">
+                      <div className="flex justify-between">
+                        <h3>{item.period}</h3>
+                        <h3 className="font-bold">{item.title}</h3>
+                      </div>
+                      <div className="flex justify-between">
+                        <h3>{item.subtitle}</h3>
+                        <h3>{item.location}</h3>
+                      </div>
+                    </li>
+                    {idx < arr.length - 1 && (
+                      <li key={`divider-${idx}`}>
+                        <div className="h-px w-full bg-stone-200/50" />
+                      </li>
+                    )}
+                  </>
+                ))}
+              </ul>
+            </div>
+          </section>
+        </motion.div>
       </section>
     </Page>
   );

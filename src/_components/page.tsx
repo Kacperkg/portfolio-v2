@@ -3,8 +3,29 @@
 import Header from "./header";
 import { motion, type Variants } from "framer-motion";
 import MenuButton from "./menu";
+import { useState, useEffect } from "react";
 
-export default function Page({ children }: { children: React.ReactNode }) {
+export default function Page({
+  children,
+  observedRef,
+}: {
+  children: React.ReactNode;
+  observedRef?: React.RefObject<HTMLElement>;
+}) {
+  const [isInColoredSection, setIsInColoredSection] = useState(false);
+
+  useEffect(() => {
+    if (!observedRef?.current) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => setIsInColoredSection(entries[0]?.isIntersecting ?? false),
+      { threshold: 0.3 },
+    );
+
+    observer.observe(observedRef.current);
+    return () => observer.disconnect();
+  }, [observedRef]);
+
   const animate = (variants: Variants, custom?: number) => {
     return {
       initial: "initial",
@@ -52,7 +73,7 @@ export default function Page({ children }: { children: React.ReactNode }) {
       </div>
       <Header />
       {children}
-      <MenuButton />
+      <MenuButton isInColoredSection={isInColoredSection} />
     </div>
   );
 }

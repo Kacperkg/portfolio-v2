@@ -4,21 +4,29 @@ import LineThroughAnim from "./lineThroughAnim";
 import UnderLineLink from "./underLineLink";
 import animate from "../contants/animations/animate";
 
-export default function MenuButton() {
+type Props = {
+  isInColoredSection: boolean;
+};
+
+export default function FloatingButton({ isInColoredSection }: Props) {
   const [active, setActive] = useState(false);
 
   return (
     <motion.div
-      className="fixed bottom-12 left-[50%] w-fit -translate-x-1/2 text-xl font-medium text-white"
+      className={`fixed bottom-12 left-[50%] w-fit -translate-x-1/2 text-xl font-medium transition-colors duration-300 ${isInColoredSection ? "text-zinc-800" : "text-stone-200"}`}
       {...animate(fadeIn)}
     >
       <button
-        className="relative flex items-center justify-between gap-8 rounded-xl bg-zinc-800"
+        className={`relative flex items-center justify-between gap-8 rounded-xl ${isInColoredSection ? "bg-stone-200" : "bg-zinc-800"}`}
         onClick={() => setActive((prev) => !prev)}
       >
-        <h2 className="z-5 rounded-xl bg-zinc-800 px-10 py-2">Menu</h2>
+        <h2
+          className={`z-5 rounded-xl px-10 py-2 ${isInColoredSection ? "bg-stone-200" : "bg-zinc-800"}`}
+        >
+          Menu
+        </h2>
         <motion.div
-          className="absolute bottom-3 left-1/2 flex h-[100px] w-[136px] origin-top -translate-x-1/2 flex-col items-center rounded-xl bg-zinc-800"
+          className={`absolute bottom-3 left-1/2 flex h-[100px] w-[136px] origin-top -translate-x-1/2 flex-col items-center rounded-xl ${isInColoredSection ? "bg-stone-200" : "bg-zinc-800"}`}
           animate={{ height: active ? 200 : 0 }}
           transition={{ duration: 0.2 }}
         >
