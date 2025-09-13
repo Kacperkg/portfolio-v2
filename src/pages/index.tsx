@@ -26,12 +26,16 @@ export default function Home() {
               [ Front-End Dev ]
             </motion.h1>
           </div>
-          <div className="mt-20 mb-60 flex justify-center gap-2 gap-10 text-2xl">
+          <div className="mt-20 mb-60 flex justify-center gap-10 text-2xl">
             {[
               { link: "/projects", label: "[ Projects ]" },
               { link: "/about", label: "[ about ]" },
-            ].map(({ link, label }) => (
-              <UnderLineLink link={link}>{label}</UnderLineLink>
+            ].map(({ link, label }, index) => (
+              <UnderLineLink key={label} link={link}>
+                <div className="overflow-hidden">
+                  <motion.p {...animate(slideInLink, index)}>{label}</motion.p>
+                </div>
+              </UnderLineLink>
             ))}
           </div>
           <ScrollItems />
@@ -55,10 +59,24 @@ const slideIn: Variants = {
   initial: {
     y: "100%",
   },
-  enter: (i: number) => ({
+  enter: {
     y: 0,
     transition: {
       delay: 1,
+      duration: 0.1,
+    },
+  },
+  exit: { y: 0 },
+};
+
+const slideInLink: Variants = {
+  initial: {
+    y: "100%",
+  },
+  enter: (i: number) => ({
+    y: 0,
+    transition: {
+      delay: 0.4 * (i + 3),
       duration: 0.1,
     },
   }),
@@ -66,6 +84,78 @@ const slideIn: Variants = {
 };
 
 const logos = [
+  {
+    name: "TypeScript",
+    component: (props: React.SVGProps<SVGSVGElement>) => (
+      <TypescriptIcon {...props} color="#27272a" />
+    ),
+  },
+  {
+    name: "Next.js",
+    component: (props: React.SVGProps<SVGSVGElement>) => (
+      <NextjsIcon {...props} color="#27272a" />
+    ),
+  },
+  {
+    name: "React",
+    component: (props: React.SVGProps<SVGSVGElement>) => (
+      <ReactIcon {...props} color="#27272a" />
+    ),
+  },
+  {
+    name: "Framer Motion",
+    component: (props: React.SVGProps<SVGSVGElement>) => (
+      <FramermotionIcon {...props} color="#27272a" />
+    ),
+  },
+  {
+    name: "Vercel",
+    component: (props: React.SVGProps<SVGSVGElement>) => (
+      <VercelIcon {...props} color="#27272a" />
+    ),
+  },
+  {
+    name: "Figma",
+    component: (props: React.SVGProps<SVGSVGElement>) => (
+      <FigmaIcon {...props} color="#27272a" />
+    ),
+  },
+  {
+    name: "TypeScript",
+    component: (props: React.SVGProps<SVGSVGElement>) => (
+      <TypescriptIcon {...props} color="#27272a" />
+    ),
+  },
+  {
+    name: "Next.js",
+    component: (props: React.SVGProps<SVGSVGElement>) => (
+      <NextjsIcon {...props} color="#27272a" />
+    ),
+  },
+  {
+    name: "React",
+    component: (props: React.SVGProps<SVGSVGElement>) => (
+      <ReactIcon {...props} color="#27272a" />
+    ),
+  },
+  {
+    name: "Framer Motion",
+    component: (props: React.SVGProps<SVGSVGElement>) => (
+      <FramermotionIcon {...props} color="#27272a" />
+    ),
+  },
+  {
+    name: "Vercel",
+    component: (props: React.SVGProps<SVGSVGElement>) => (
+      <VercelIcon {...props} color="#27272a" />
+    ),
+  },
+  {
+    name: "Figma",
+    component: (props: React.SVGProps<SVGSVGElement>) => (
+      <FigmaIcon {...props} color="#27272a" />
+    ),
+  },
   {
     name: "TypeScript",
     component: (props: React.SVGProps<SVGSVGElement>) => (
@@ -137,8 +227,4 @@ const ScrollItems = () => {
       </motion.div>
     </div>
   );
-};
-
-const Buttons = () => {
-  return <div></div>;
 };

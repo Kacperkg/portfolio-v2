@@ -1,7 +1,6 @@
 "use client";
 
 import LineThroughAnim from "./lineThroughAnim";
-import UnderLineLink from "./underLineLink";
 
 export default function Header() {
   return (

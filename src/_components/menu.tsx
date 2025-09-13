@@ -1,24 +1,22 @@
-import { motion } from "framer-motion";
+import { motion, type Variants } from "framer-motion";
 import { useState } from "react";
 import LineThroughAnim from "./lineThroughAnim";
 import UnderLineLink from "./underLineLink";
+import animate from "../contants/animate";
 
 export default function MenuButton() {
   const [active, setActive] = useState(false);
 
-  const buttonItems = [
-    { label: "Home", link: "/" },
-    { label: "Project", link: "/projects" },
-    { label: "About", link: "/about" },
-  ];
-
   return (
-    <div className="fixed bottom-12 left-[50%] w-fit -translate-x-1/2 text-xl font-medium text-white">
+    <motion.div
+      className="fixed bottom-12 left-[50%] w-fit -translate-x-1/2 text-xl font-medium text-white"
+      {...animate(fadeIn)}
+    >
       <button
         className="relative flex items-center justify-between gap-8 rounded-xl bg-zinc-800"
         onClick={() => setActive((prev) => !prev)}
       >
-        <h2 className="px-10 py-2">Menu</h2>
+        <h2 className="z-5 rounded-xl bg-zinc-800 px-10 py-2">Menu</h2>
         <motion.div
           className="absolute bottom-3 left-1/2 flex h-[100px] w-[136px] origin-top -translate-x-1/2 flex-col items-center rounded-xl bg-zinc-800"
           animate={{ height: active ? 200 : 0 }}
@@ -47,6 +45,20 @@ export default function MenuButton() {
           </ul>
         </motion.div>
       </button>
-    </div>
+    </motion.div>
   );
 }
+
+const fadeIn: Variants = {
+  initial: {
+    opacity: 0,
+  },
+  enter: {
+    opacity: 1,
+    transition: {
+      delay: 1,
+      duration: 0.25,
+    },
+  },
+  exit: { opacity: 0 },
+};
