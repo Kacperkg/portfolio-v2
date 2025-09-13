@@ -22,13 +22,14 @@ export default function MenuButton() {
           animate={{ height: active ? 200 : 0 }}
           transition={{ duration: 0.2 }}
         >
-          <ul className="text-md mt-2 flex flex-col gap-4 py-2 text-left font-normal">
+          <ul className="text-md mt-2 flex flex-col py-2 text-left font-normal">
             {[
               { link: "/", label: "Home" },
               { link: "/projects", label: "Projects" },
               { link: "/about", label: "About" },
             ].map(({ link, label }, i) => (
               <motion.li
+                className="py-2"
                 key={link}
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: active ? 1 : 0, y: active ? 0 : 10 }}

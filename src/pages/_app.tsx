@@ -1,6 +1,7 @@
 import { type AppType } from "next/app";
 import { type AppProps } from "next/app";
 import localFont from "next/font/local";
+import { ReactLenis } from "lenis/react";
 
 import "~/styles/globals.css";
 import { AnimatePresence } from "framer-motion";
@@ -33,9 +34,11 @@ const Subjectivity = localFont({
 const MyApp: AppType = ({ Component, pageProps, router }: AppProps) => {
   return (
     <div className={Subjectivity.className}>
-      <AnimatePresence mode="wait">
-        <Component {...pageProps} key={router.route} />
-      </AnimatePresence>
+      <ReactLenis root options={{ lerp: 0.05 }}>
+        <AnimatePresence mode="wait">
+          <Component {...pageProps} key={router.route} />
+        </AnimatePresence>
+      </ReactLenis>
     </div>
   );
 };
