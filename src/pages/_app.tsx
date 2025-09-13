@@ -1,4 +1,5 @@
 import { type AppType } from "next/app";
+import { type AppProps } from "next/app";
 import localFont from "next/font/local";
 
 import "~/styles/globals.css";
@@ -29,7 +30,7 @@ const Subjectivity = localFont({
   ],
 });
 
-const MyApp: AppType = ({ Component, pageProps, router }) => {
+const MyApp: AppType = ({ Component, pageProps, router }: AppProps) => {
   return (
     <div className={Subjectivity.className}>
       <AnimatePresence mode="wait">
