@@ -17,16 +17,18 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Page>
-        <div className="px-8">
-          <div className="mt-80 flex w-full flex-col justify-end overflow-hidden">
+        {/* Title */}
+        <div className="flex h-[80vh] flex-col items-center justify-center px-2">
+          <div className="flex w-full flex-col justify-end overflow-hidden">
             <motion.h1
-              className="text-center text-[7em]/40 font-bold uppercase"
+              className="text-center text-4xl font-bold uppercase sm:text-5xl md:text-6xl lg:text-7xl xl:text-[7em]/40"
               {...animate(slideIn)}
             >
               [ Front-End Dev ]
             </motion.h1>
           </div>
-          <div className="mt-20 mb-60 flex justify-center gap-10 text-2xl">
+          {/* Quick Links */}
+          <div className="mt-20 flex flex-col items-center justify-center gap-10 text-xl sm:flex-row xl:text-2xl">
             {[
               { link: "/projects", label: "[ Projects ]" },
               { link: "/about", label: "[ about ]" },
@@ -38,6 +40,7 @@ export default function Home() {
               </UnderLineLink>
             ))}
           </div>
+          {/* Scroller */}
           <ScrollItems />
         </div>
       </Page>

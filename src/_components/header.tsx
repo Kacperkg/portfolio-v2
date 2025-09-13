@@ -6,7 +6,7 @@ export default function Header() {
   return (
     <header className="border-stone/20 border-b p-4 font-medium">
       <div className="mx-auto flex max-w-7xl items-start justify-between">
-        <div className="flex cursor-default flex-col gap-1.5 uppercase">
+        <div className="flex w-full cursor-default justify-between gap-1.5 uppercase md:w-fit md:flex-col">
           {["Kacper Gajdarski", "Comp Sci Grad", "At Heriot-Watt"].map(
             (text) => (
               <LineThroughAnim key={text}>
@@ -16,7 +16,7 @@ export default function Header() {
           )}
         </div>
 
-        <div className="flex cursor-default flex-col gap-2 text-sm uppercase">
+        <div className="hidden cursor-default gap-2 text-sm uppercase md:flex md:flex-col">
           {[
             { text: "On-site", className: "text-base" },
             { text: "Edinbrugh" },
@@ -28,7 +28,7 @@ export default function Header() {
           ))}
         </div>
 
-        <div className="flex cursor-default flex-col gap-2 text-sm uppercase">
+        <div className="hidden cursor-default flex-col gap-2 text-sm uppercase md:flex">
           {[
             { text: "remote", className: "text-base" },
             { text: "united-kingdom" },
