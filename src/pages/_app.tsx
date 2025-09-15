@@ -39,6 +39,7 @@ const MyApp: AppType = ({ Component, pageProps, router }: AppProps) => {
         options={{
           lerp: 0.05,
           smoothWheel: true,
+          overscroll: true,
         }}
       >
         <AnimatePresence mode="wait">

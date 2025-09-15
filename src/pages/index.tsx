@@ -27,7 +27,7 @@ export default function Home() {
         <div className="flex h-[80vh] flex-col items-center justify-center overflow-hidden px-2">
           <div className="flex w-full flex-col justify-end overflow-hidden">
             <motion.h1
-              className="text-center text-4xl font-bold uppercase sm:text-5xl md:text-6xl lg:text-7xl xl:text-[7em]/40"
+              className="text-center text-4xl font-extrabold uppercase sm:text-5xl md:text-6xl lg:text-7xl xl:text-[7em]/40"
               {...animate(slideInTitle)}
             >
               [ Front-End Dev ]

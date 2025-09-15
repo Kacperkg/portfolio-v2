@@ -1,8 +1,14 @@
 import Page from "~/_components/page";
 import yellow1 from "../../public/yellow-2.jpeg";
 import Image from "next/image";
-import { motion, useScroll, useTransform, type Variants } from "framer-motion";
-import { useRef } from "react";
+import {
+  motion,
+  type MotionValue,
+  useScroll,
+  useTransform,
+  type Variants,
+} from "framer-motion";
+import { useRef, useState } from "react";
 import { slideInTitle } from "~/contants/animations/home";
 import animate from "~/contants/animations/animate";
 
@@ -13,7 +19,8 @@ export default function AboutPage() {
     target: coloredSectionRef,
   });
 
-  const x = useTransform(horiScroll, [0, 1], ["1%", "-95%"]);
+  const x = useTransform(horiScroll, [0, 1], ["1%", "-50%"]);
+  const x2 = useTransform(horiScroll, [0, 0.8, 1], ["200%", "0%", "0%"]);
 
   const fadeIn: Variants = {
     initial: {
@@ -38,7 +45,7 @@ export default function AboutPage() {
         <div className="relative flex h-[60vh] flex-col items-center justify-center">
           <div className="flex w-full flex-col justify-end overflow-hidden">
             <motion.h1
-              className="text-center text-4xl font-bold uppercase sm:text-5xl md:text-6xl lg:text-7xl xl:text-[7em]/40"
+              className="text-center text-4xl font-extrabold uppercase sm:text-5xl md:text-6xl lg:text-7xl xl:text-[7em]/40"
               {...animate(slideInTitle)}
             >
               [ About ]
@@ -64,7 +71,7 @@ export default function AboutPage() {
           transition={{ duration: 0.4 }}
         >
           <div className="sticky top-0 flex h-screen overflow-hidden">
-            <motion.div className="flex gap-4" style={{ x }}>
+            <motion.div className="flex justify-between" style={{ x }}>
               {/* Experience Section */}
               <section className="flex h-screen min-w-screen flex-col items-center justify-center">
                 <motion.h3
@@ -82,6 +89,7 @@ export default function AboutPage() {
                 </motion.h3>
                 <ExperienceAndEducation />
               </section>
+              <Contact x={x2} />
             </motion.div>
           </div>
         </motion.div>
@@ -240,6 +248,54 @@ const ExperienceAndEducation = () => {
           </motion.div>
         ))}
       </motion.div>
+    </section>
+  );
+};
+
+const Contact = ({ x }: { x: MotionValue<string> }) => {
+  const [isHovered, setIsHovered] = useState(false);
+
+  return (
+    <section className="flex h-screen min-w-screen flex-col items-center justify-center">
+      <motion.h1
+        className="text-8xl font-extrabold"
+        style={{
+          x,
+        }}
+      >
+        Got a project in mind?
+      </motion.h1>
+      <motion.p
+        initial={{ opacity: 0, scale: 0 }}
+        whileInView={{ opacity: 1, scale: 1 }}
+        transition={{ delay: 1.4 }}
+      >
+        Or looking for someone to join your team
+      </motion.p>
+      <motion.a
+        onHoverStart={() => setIsHovered(true)}
+        onHoverEnd={() => setIsHovered(false)}
+        href="mailto:contact@kacpergajdarski.com"
+        className="relative mt-8 flex flex-col overflow-hidden rounded-xl bg-stone-200 px-6 py-4 text-2xl font-semibold text-zinc-800"
+        initial={{ opacity: 0, y: 20, scale: 0 }}
+        whileInView={{ opacity: 1, y: 0, scale: 1 }}
+        transition={{ delay: 1.6 }}
+      >
+        <motion.span
+          animate={{
+            y: isHovered ? "-200%" : 0,
+            transition: { duration: 0.1 },
+          }}
+        >
+          Get in touch
+        </motion.span>
+        <motion.span
+          className="absolute"
+          animate={{ y: isHovered ? 0 : "200%", transition: { duration: 0.1 } }}
+        >
+          Get in touch
+        </motion.span>
+      </motion.a>
     </section>
   );
 };
