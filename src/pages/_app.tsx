@@ -36,7 +36,10 @@ const MyApp: AppType = ({ Component, pageProps, router }: AppProps) => {
     <div className={Subjectivity.className}>
       <ReactLenis
         root
-        options={{ duration: 5, wheelMultiplier: 4, touchMultiplier: 4 }}
+        options={{
+          lerp: 0.05,
+          smoothWheel: true,
+        }}
       >
         <AnimatePresence mode="wait">
           <Component {...pageProps} key={router.route} />
