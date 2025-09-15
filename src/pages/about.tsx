@@ -58,9 +58,9 @@ export default function AboutPage() {
         <motion.div
           ref={coloredSectionRef}
           className="relative mt-40 h-[200vh] bg-zinc-800 text-stone-200"
-          initial={{ scale: 0.1 }}
-          whileInView={{ scale: 1 }}
-          viewport={{ amount: "some", margin: "0px 0px 500px 0px" }}
+          initial={{ scaleY: 0.1 }}
+          whileInView={{ scaleY: 1 }}
+          viewport={{ amount: "some", margin: "0px 0px 50% 0px" }}
           transition={{ duration: 0.4 }}
         >
           <div className="sticky top-0 flex h-screen overflow-hidden">
